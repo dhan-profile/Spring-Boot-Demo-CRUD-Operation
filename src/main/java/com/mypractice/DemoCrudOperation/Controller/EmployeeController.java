@@ -37,8 +37,7 @@ public class EmployeeController {
 	
 	@RequestMapping(value="/getById/{id}")		// {id} = URI template variable 
 	@ResponseBody
-	public Employee getById(@PathVariable("id") int id)
-	{
+	public Employee getById(@PathVariable("id") int id){
 		Employee employee=employeeService.getByIdEmployee(id);
 		return employee;
 	}
@@ -46,8 +45,7 @@ public class EmployeeController {
 //	@RequestMapping(value="/getAll", method=RequestMethod.GET)
 	@GetMapping("/getAll")
 	@ResponseBody
-	public List<Employee> getAll()
-	{
+	public List<Employee> getAll(){
 		List<Employee> employee=employeeService.getAllEmployees();
 		return employee;
 	}
@@ -76,26 +74,37 @@ public class EmployeeController {
 	 }
 	 
 	 @GetMapping("/getNameAndLocation/")
-	 public Employee getByEmployeeNameAndLocation(
-			                                   @RequestParam("name")String name,
-			                                   @RequestParam("location") String location)
-	 {
+	 public Employee getByEmployeeNameAndLocation(@RequestParam("name")String name, @RequestParam("location") String location){
 		return employeeService.getEmployeeByNameAndLocation(name,location);
 	 }
 	 
 	 @GetMapping("/getByIdGreater/{id}")
-	 public List<Employee> getByIdGreaterThan(@PathVariable("id") int id)
-	 {
+	 public List<Employee> getByIdGreaterThan(@PathVariable("id") int id){
 		return employeeService.getByAgeGreaterThan(id);
 	 }
 	
-	
-	
-	
-	
 //	@RequestParam ==> Bind the value from Query parameter
-	
-	
+//	 /getByLocation?location=Chennai
+	 @GetMapping("/getByLocation")
+	 public List<Employee> getEmployeesByLocation(@RequestParam("location") String location) {
+	     return employeeService.getByLocation(location);
+	 }
+	 
+	 
+	 @GetMapping("/getByLocationAndName")
+	 public Employee findByLocationAndName(@RequestParam(value="location") String location, @RequestParam("name") String name){
+		 return employeeService.getBylocationAndName(location,name);
+	 }
+	 
+	 @GetMapping("/getEmployeeNameOrLocation")
+	 public List<Employee> getEmployeeByNameOrLocation(@RequestParam("name") String name, @RequestParam("location") String location){
+		 return employeeService.getByNameOrLocation(name, location);
+	 }
+	 
+	 @GetMapping("/getNamesStartingA")
+	 public List<Employee> getEmployeeStartingWithA(@RequestParam("name") String name){
+		 return employeeService.getEmployeeStartingA(name);
+	 }
 	
 //	@RequestMapping(value="/saveEmployee",method=RequestMethod.POST)
 //	@ResponseBody

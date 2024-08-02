@@ -62,11 +62,27 @@ public class EmployeeService {
     {
    	 return employeeRepository.findByIdGreaterThan(id);
     }
-	
 
+    public List<Employee> getByLocation(String location){
+    	return employeeRepository.getByLocation(location);
+    }
 	
-	
-	
+//    public Employee getBylocationAndName(String location, String name) {
+//    	return getBylocationAndName(location, name);
+//    }
+    
+    public Employee getBylocationAndName(String location, String name) {
+        return employeeRepository.findByLocationAndName(location, name);
+    }
+    
+    public List<Employee> getByNameOrLocation(String name,String location) {
+    	return employeeRepository.getEmployeeByNameOrLocation(name,location);
+    }
+    
+    public List<Employee> getEmployeeStartingA(String name){
+    	return employeeRepository.getNamesStartingA(name);
+    }
+
 	
 //	@Autowired
 //	private EmployeeRepository employeeRepository;
