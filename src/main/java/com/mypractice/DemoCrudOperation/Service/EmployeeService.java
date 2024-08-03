@@ -31,7 +31,7 @@ public class EmployeeService {
 	}
 
 	public Employee updateEmployee(Employee employee, int id) {
-		Employee savedEmployee = employeeRepository.findById(id).get();	// To check if id exists
+		Employee savedEmployee = employeeRepository.findById(id).get();	// To get id if exists
 		savedEmployee.setName(employee.getName());
 		savedEmployee.setLocation(employee.getLocation());
 		savedEmployee.setEmpid(employee.getEmpid());

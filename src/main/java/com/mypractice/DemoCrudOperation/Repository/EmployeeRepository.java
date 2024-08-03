@@ -13,6 +13,7 @@ import com.mypractice.DemoCrudOperation.Entity.Employee;
 public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
 //	public Employee findByName(String name);
 	
+//	Query methods
     public Employee findByName(String name);
 //    findBy = Predicate,  Name = Subject
     
