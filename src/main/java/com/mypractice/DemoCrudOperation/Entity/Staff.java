@@ -1,5 +1,7 @@
 package com.mypractice.DemoCrudOperation.Entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -18,7 +20,8 @@ public class Staff {
 	private String name;
 	private String location;
 	
-	@ManyToOne(cascade= {CascadeType.MERGE,CascadeType.PERSIST},fetch=FetchType.EAGER)
+//	@ManyToOne(cascade= {CascadeType.MERGE,CascadeType.PERSIST},fetch=FetchType.EAGER)
+	@ManyToOne(cascade= CascadeType.ALL, fetch=FetchType.EAGER)
 	@JoinColumn(name="clgId",referencedColumnName="id")
 	private College college;
 

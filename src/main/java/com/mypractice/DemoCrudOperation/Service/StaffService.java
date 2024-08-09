@@ -11,13 +11,38 @@ import com.mypractice.DemoCrudOperation.Repository.StaffRepository;
 public class StaffService {
 	 @Autowired
 	 private StaffRepository staffRepository;
-	 
-	 @Autowired
-	 private CollegeRepository collegeRepository;
-	 
+	 	 
    public Staff saveStaffDetails(Staff staff)
    {
 	   Staff staffSaved = staffRepository.save(staff);
 	   return staffSaved;
    }
+   
+   public Staff getStaffDetails(int id) {
+	   return staffRepository.findById(id).get();
+   }
+   
+   public Staff deleteStaff(int id) {
+	   Staff deletedStaff = staffRepository.findById(id).get();
+	   staffRepository.deleteById(id);
+	   return deletedStaff;
+   }
+
+   public Staff updateStaffDetails(Staff staff, int id) {
+	    Staff staffId = staffRepository.findById(id).orElseThrow(() -> new RuntimeException("Staff not found"));
+	    staffId.setName(staff.getName());
+	    staffId.setLocation(staff.getLocation());
+	    staffId.setCollege(staff.getCollege());
+	    return staffRepository.save(staffId);
+	}
+
+   
+   
+//   public Staff updateStaffDetails(Staff staff, int id) {
+//	   Staff staffId = staffRepository.findById(id).get();
+//	   staffId.setName(staff.getName());
+//	   staffId.setLocation(staff.getLocation());
+//	   staffId.setCollege(staff.getCollege());
+//	   return staffRepository.save(staffId);
+//   }
 }

@@ -15,4 +15,9 @@ public class CollegeService {
 		College college = collegeRepository.save(clg);
 		return college;
 	}
+	
+	public College getCollegeDetails(int id) {
+		College clg = collegeRepository.findById(id).get(); 
+		return clg;
+	}
 }

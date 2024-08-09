@@ -3,6 +3,8 @@ package com.mypractice.DemoCrudOperation.Controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 //import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,30 +32,34 @@ public class EmployeeController {
 
 	@PostMapping("/saveEmployee")
 	@ResponseBody
-	public Employee saveEmployee(@RequestBody Employee employee) {
+	public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
 	    Employee savedEmployee = employeeService.saveEmployee(employee);
-	    return savedEmployee;
+	    return new ResponseEntity<>(savedEmployee,HttpStatus.OK);
+//	    return savedEmployee;
 	}
 	
-	@RequestMapping(value="/getById/{id}")		// {id} = URI template variable 
+//	@RequestMapping(value="/getById/{id}")		// {id} = URI template variable
+	@GetMapping("/getById/{id}")
 	@ResponseBody
-	public Employee getById(@PathVariable("id") int id){
+	public ResponseEntity<Employee> getById(@PathVariable("id") int id){
 		Employee employee=employeeService.getByIdEmployee(id);
-		return employee;
+		return new ResponseEntity<>(employee,HttpStatus.OK);
 	}
 	
 //	@RequestMapping(value="/getAll", method=RequestMethod.GET)
 	@GetMapping("/getAll")
 	@ResponseBody
-	public List<Employee> getAll(){
+	public ResponseEntity<List<Employee>> getAll(){
 		List<Employee> employee=employeeService.getAllEmployees();
-		return employee;
+		return new ResponseEntity<>(employee,HttpStatus.OK);
+//		return employee;
 	}
 	
 	@PutMapping("/updateEmployee/{id}")
 	@ResponseBody
-	public Employee updateEmployee(@RequestBody Employee employee, @PathVariable("id") int id) {
-		return employeeService.updateEmployee(employee, id);
+	public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee, @PathVariable("id") int id) {
+		Employee emp = employeeService.updateEmployee(employee, id);
+		return new ResponseEntity<>(emp,HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/deleteEmployee/{id}")

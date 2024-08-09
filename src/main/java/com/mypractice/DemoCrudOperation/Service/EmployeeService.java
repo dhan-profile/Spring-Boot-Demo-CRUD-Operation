@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.mypractice.DemoCrudOperation.Entity.Employee;
+import com.mypractice.DemoCrudOperation.Exception.EmployeeNotFoundException;
 import com.mypractice.DemoCrudOperation.Repository.EmployeeRepository;
 
 @Service
@@ -21,7 +22,8 @@ public class EmployeeService {
 	}
 
 	public Employee getByIdEmployee(int id) {
-		Employee employee = employeeRepository.findById(id).get();
+		Employee employee = employeeRepository.findById(id)
+				.orElseThrow(()->new EmployeeNotFoundException("EmployeeNotFound"));
 		return employee;
 	}
 	

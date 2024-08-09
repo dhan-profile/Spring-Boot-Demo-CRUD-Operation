@@ -1,5 +1,6 @@
 package com.mypractice.DemoCrudOperation.Entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -19,8 +20,11 @@ public class Student {
 	private String name;
 	private String location;
 	
-	@OneToOne(cascade=CascadeType.ALL,mappedBy="student",fetch=FetchType.EAGER)
-//	@JoinColumn(name="aadhar_id", referencedColumnName="id")
+//	@OneToOne(cascade=CascadeType.ALL,mappedBy="student",fetch=FetchType.EAGER)
+	
+	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="aadhar_id", referencedColumnName="id")
+	 @JsonManagedReference
 	private AadharDetails aadharDetails;
 	
 	public Student() {

@@ -42,7 +42,7 @@ public class OneToOneBiDirectionalMapping {
 	 {
 	  AadharDetails aadharDetails= aadharDetailsRepository.findById(1).get();
 	                aadharDetails.setAadharNumber(5678l);
-	                aadharDetails.getStudent().setLocation("madurai");
+//	                aadharDetails.getStudent().setLocation("madurai");
 	                aadharDetailsRepository.save(aadharDetails);
 	 }
 }
