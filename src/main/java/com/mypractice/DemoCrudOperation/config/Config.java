@@ -15,52 +15,52 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class Config {
 	
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-            .csrf().disable()
-            .authorizeRequests()
-                .requestMatchers("/api").permitAll() // Allow access to /api
-                .anyRequest().authenticated()
-            .and()
-            .httpBasic(); // or formLogin() depending on your security setup
-
-        return http.build();
-    }
-    
-    
-//	@Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-//	
 //    @Bean
 //    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //        http.csrf().disable()
-//            .authorizeHttpRequests(req -> req
-//                .requestMatchers("/home").permitAll()
+//            .authorizeRequests()
+//                .requestMatchers("/api").permitAll() // Allow access to /api
 //                .anyRequest().authenticated()
-//            )
-//            .formLogin(Customizer.withDefaults())
-//            .httpBasic(Customizer.withDefaults());
+//            .and()
+//            .httpBasic(); // or formLogin() depending on your security setup
 //
 //        return http.build();
 //    }
-//	
-//	@Bean
-//	public UserDetailsService userDetailsService() {
-//		UserDetails admin = User.builder()
-//							.username("Sakthi")
-//							.password(passwordEncoder().encode("1234"))
-//							.roles("ADMIN")
-//							.build();
-//		
-//		UserDetails user = User.builder()
-//							.username("suresh")
-//							.password(passwordEncoder().encode("4321"))
-//							.roles("USER")
-//							.build();
-//		
-//		return new InMemoryUserDetailsManager(admin, user);
-//	}
+    
+    
+	@Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+	
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        http.csrf().disable()
+            .authorizeHttpRequests(req -> req
+                .requestMatchers("/home").permitAll()
+                .requestMatchers("/api").permitAll()
+                .anyRequest().authenticated()
+            )
+            .formLogin(Customizer.withDefaults())
+            .httpBasic(Customizer.withDefaults());
+
+        return http.build();
+    }
+	
+	@Bean
+	public UserDetailsService userDetailsService() {
+		UserDetails admin = User.builder()
+							.username("Sakthi")
+							.password(passwordEncoder().encode("1234"))
+							.roles("ADMIN")
+							.build();
+		
+		UserDetails user = User.builder()
+							.username("suresh")
+							.password(passwordEncoder().encode("4321"))
+							.roles("USER")
+							.build();
+		
+		return new InMemoryUserDetailsManager(admin, user);
+	}
 }

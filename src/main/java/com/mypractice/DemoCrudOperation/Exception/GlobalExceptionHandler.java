@@ -23,4 +23,11 @@ public class GlobalExceptionHandler
 		 ErrorDetails s=new ErrorDetails(new Date(),notfound.getMessage(),webRequest.getDescription(false));
 		 return new ResponseEntity<>(s,HttpStatus.NOT_FOUND);
 	 }
+	 
+	 @ExceptionHandler(RoleNotFoundException.class)
+	 public ResponseEntity<ErrorDetails> RoleNotFound(RoleNotFoundException notfound, WebRequest webRequest)
+	 {
+		 ErrorDetails e = new ErrorDetails(new Date(), notfound.getMessage(), webRequest.getDescription(true));
+		 return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
+	 }
 }
