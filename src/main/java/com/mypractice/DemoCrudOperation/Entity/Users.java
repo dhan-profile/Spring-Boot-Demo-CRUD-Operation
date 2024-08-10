@@ -14,7 +14,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToMany;
 
 @Entity
-public class User {
+public class Users {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -22,17 +22,18 @@ public class User {
 	private String password;
 	private String email;
 	
-	@ManyToMany(cascade= {CascadeType.MERGE,CascadeType.PERSIST}, fetch=FetchType.EAGER)
+//	@ManyToMany(cascade= {CascadeType.MERGE,CascadeType.PERSIST}, fetch=FetchType.EAGER)
+	@ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinTable(name="User_Role", 
-	joinColumns			=@JoinColumn(name="userIdTable", referencedColumnName="id"), 
-	inverseJoinColumns	=@JoinColumn(name="roleIdTable", referencedColumnName="id"))
+	joinColumns			= @JoinColumn(name="userIdTable", referencedColumnName="id"), 
+	inverseJoinColumns	= @JoinColumn(name="roleIdTable", referencedColumnName="id"))
 	private Set<Role> role = new HashSet<Role>();
 	
-	public User() {
+	public Users() {
 
 	}
 
-	public User(int id, String username, String password, String email) {
+	public Users(int id, String username, String password, String email) {
 		super();
 		this.id = id;
 		this.username = username;

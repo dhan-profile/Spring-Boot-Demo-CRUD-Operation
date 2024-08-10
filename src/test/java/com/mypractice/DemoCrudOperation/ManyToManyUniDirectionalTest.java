@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import com.mypractice.DemoCrudOperation.Entity.Role;
-import com.mypractice.DemoCrudOperation.Entity.User;
+import com.mypractice.DemoCrudOperation.Entity.Users;
 import com.mypractice.DemoCrudOperation.Repository.RoleRepository;
 import com.mypractice.DemoCrudOperation.Repository.UserRepository;
 
@@ -20,12 +20,12 @@ public class ManyToManyUniDirectionalTest {
 
 //	@Test
 	public void save() {
-	User user = new User();
+	Users user = new Users();
 //	user.setUsername("Sakthi");
 //	user.setEmail("sakthi@gmail.com");
 //	user.setPassword("1234");
 	
-	User user2 = new User();
+	Users user2 = new Users();
 	user2.setUsername("James");
 	user2.setEmail("James@gmail.com");
 	user2.setPassword("7894");
@@ -48,17 +48,17 @@ public class ManyToManyUniDirectionalTest {
 //	@Test
 	  public void saveAll()
 	  {
-		  User user1=new User();
+		  Users user1=new Users();
 		  user1.setUsername("mouli");
 		  user1.setEmail("mouli@gmail.com");
 		  user1.setPassword("54321");
 	         
-	         User user2=new User();
+	         Users user2=new Users();
 	         user2.setUsername("jeyaraj");
 	         user2.setEmail("jeyaraj@gmail.com");
 	         user2.setPassword("456");
 	         
-	         User user3=new User();
+	         Users user3=new Users();
 	         user3.setUsername("suresh");
 	         user3.setEmail("suresh@gmail.com");
 	         user3.setPassword("456789");
@@ -79,7 +79,7 @@ public class ManyToManyUniDirectionalTest {
 //	  @Test
 	  public void updateUser()
 	  {
-		 User users= userRepository.findById(1).get(); 
+		 Users users= userRepository.findById(1).get(); 
 		      users.setPassword("345");
 		      users.setEmail("sakthi123@gmail.com");
 		      userRepository.save(users);
@@ -95,7 +95,7 @@ public class ManyToManyUniDirectionalTest {
 //	  @Test
 	  public void getUserRoles()
 	  {
-		  User users= userRepository.findById(1).get(); 
+		  Users users= userRepository.findById(1).get(); 
 		       System.out.println(users.getUsername());
 		       System.out.println(users.getPassword());
 		       users.getRole()
@@ -105,7 +105,7 @@ public class ManyToManyUniDirectionalTest {
 //	  @Test
 	  public void deleteUser()
 	  {
-		  User users= userRepository.findById(5).get(); 
+		  Users users= userRepository.findById(5).get(); 
 		  userRepository.delete(users);
 	  }
 }

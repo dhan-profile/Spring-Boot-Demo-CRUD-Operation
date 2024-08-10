@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mypractice.DemoCrudOperation.Entity.Role;
-import com.mypractice.DemoCrudOperation.Entity.User;
+import com.mypractice.DemoCrudOperation.Entity.Users;
 import com.mypractice.DemoCrudOperation.Service.RoleService;
 
 @RestController

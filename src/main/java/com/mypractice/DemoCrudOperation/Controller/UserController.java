@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mypractice.DemoCrudOperation.Entity.User;
+import com.mypractice.DemoCrudOperation.Entity.Users;
 import com.mypractice.DemoCrudOperation.Service.UserService;
 
 @RestController
@@ -20,14 +20,15 @@ public class UserController {
 	private UserService userService;
 	
 	@PostMapping("/saveUser")
-	public User createUser(@RequestBody User user) {
-		User savedUser = userService.saveUserDetails(user);
+	public Users createUser(@RequestBody Users user) {
+		Users savedUser = userService.saveUserDetails(user);
 		return savedUser;
 	}
 	
 	@GetMapping("/getAllUser")
-	public List<User> getAllUser(){
-		List<User> userdtl = userService.getAllUserDetails();
+	public List<Users> getAllUser(){
+		List<Users> userdtl = userService.getAllUserDetails();
 		return userdtl;
 	}
+
 }
