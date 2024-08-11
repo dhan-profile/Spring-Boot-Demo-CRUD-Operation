@@ -43,14 +43,14 @@ public class Config {
 //	===================
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.csrf().disable()
-            .authorizeHttpRequests(req -> req
+//    	csrf - Cross-Site Request Forgery
+        http.csrf().disable().authorizeHttpRequests(req -> req
                 .requestMatchers("/home").permitAll()
                 .requestMatchers("/api").permitAll()
                 .anyRequest().authenticated()
-            )
-            .formLogin(Customizer.withDefaults())
-            .httpBasic(Customizer.withDefaults());
+                );
+//            .formLogin(Customizer.withDefaults())
+//            .httpBasic(Customizer.withDefaults());
 
         return http.build();
     }

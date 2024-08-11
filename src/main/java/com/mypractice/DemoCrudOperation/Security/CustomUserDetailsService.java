@@ -26,15 +26,26 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        // Fetch the user by email, throwing an exception if not found		Eg: admin@gmail.com
+//    	Fetch the user(username) by email, (checking if the email exist)
+//    	================================================================
+//    	throwing an exception if not found,		Eg: admin@gmail.com
         Users user = userRepository.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User with email: " + email + " not found."));
 
-        // Map roles to GrantedAuthority objects
-        Set<GrantedAuthority> authorities = user.getRole().stream().map(role -> new SimpleGrantedAuthority(role.getRoleName()))
+/*     +----------------------------------------------------------------------------------------------+
+       |  Map roles to GrantedAuthority objects                                                       |
+       |  ======================================                                                      |
+       |  * A GrantedAuthority represents a privilege or permission granted to an authenticated user. |
+       |  * It defines what actions the user is allowed to perform within the application.            |
+       |  * One user can have multiple roles. ==>> (ManyToMany)                                       |
+       |  * So, we are getting all roles of a user by using map() function & adding it to Set<>	      |
+	   +----------------------------------------------------------------------------------------------+
+*/     Set<GrantedAuthority> authorities = user.getRole().stream().map(role -> new SimpleGrantedAuthority(role.getRoleName()))
                 							.collect(Collectors.toSet());
 
-        // Return a Spring Security User object
-        return new User(user.getEmail(), user.getPassword(), authorities);
+/*     * Return a Spring Security User object (of type UserDetails)
+       * UserDetails: Returns the authorities granted to the user. Cannot return null
+	   * User is a predefined class that has a constructor getting username, password and authorities as parameters
+*/      return new User(user.getEmail(), user.getPassword(), authorities);
     }
 }
 
