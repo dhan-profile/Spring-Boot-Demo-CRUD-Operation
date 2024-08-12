@@ -6,8 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import com.mypractice.DemoCrudOperation.Entity.College;
-import com.mypractice.DemoCrudOperation.Entity.Staff;
+//import com.mypractice.DemoCrudOperation.Entity.College;
+//import com.mypractice.DemoCrudOperation.Entity.Staff;
 import com.mypractice.DemoCrudOperation.Repository.CollegeRepository;
 
 @SpringBootTest

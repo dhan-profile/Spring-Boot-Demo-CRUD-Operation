@@ -30,4 +30,11 @@ public class GlobalExceptionHandler
 		 ErrorDetails e = new ErrorDetails(new Date(), notfound.getMessage(), webRequest.getDescription(true));
 		 return new ResponseEntity<>(e,HttpStatus.NOT_FOUND);
 	 }
+
+	 @ExceptionHandler(UserNotFoundException.class)
+	 public ResponseEntity<ErrorDetails> UserNotFound(UserNotFoundException notfound, WebRequest webRequest)
+	 {
+		ErrorDetails u = new ErrorDetails(new Date(), notfound.getMessage(), webRequest.getDescription(true));
+		return new ResponseEntity<>(u, HttpStatus.NOT_FOUND);
+	 }
 }

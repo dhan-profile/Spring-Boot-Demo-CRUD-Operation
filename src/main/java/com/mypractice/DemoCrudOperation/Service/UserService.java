@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import com.mypractice.DemoCrudOperation.Entity.Users;
+import com.mypractice.DemoCrudOperation.Exception.UserNotFoundException;
 import com.mypractice.DemoCrudOperation.Repository.UserRepository;
 
 @Service
@@ -23,6 +24,13 @@ public class UserService {
 	public List<Users> getAllUserDetails(){
 		List<Users> userdtl = userRepository.findAll();
 		return userdtl;
+	}
+
+	public Users getUserDetailById(int id){
+		List<Users> nos = userRepository.findAll();
+        int no = nos.size();
+		Users user = userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User with ID: "+id+" is NOT FOUND. Only "+no+" users found"));
+		return user;
 	}
 	
 	public Users saveUserDetails(Users user) {

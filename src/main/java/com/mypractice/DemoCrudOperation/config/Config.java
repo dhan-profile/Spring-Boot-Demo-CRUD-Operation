@@ -17,9 +17,9 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 public class Config {
-   
+
 	private UserDetailsService userDetailsService;
-	
+
 	@Autowired
 	public Config(UserDetailsService userDetailsService) {
 		this.userDetailsService = userDetailsService;
@@ -28,33 +28,38 @@ public class Config {
 //	PasswordEncoder
 //	===============
 	@Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
-	
+	public PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
+
 //	AuthenticationManager
 //	=====================
+/* It is used to manually authenticate users 
+ * (e.g., in custom authentication filters) or configure the authentication process programmatically.
+ * To customize or access the AuthenticationManager to handle authentication processes like login, password verification, etc.
+ * By defining this bean, you ensure that an AuthenticationManager is available throughout your application and 
+ * can be customized if necessary. 
+*/
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration configure) throws Exception {
 		return configure.getAuthenticationManager();
 	}
-	
+
 //	SecurityFilterChain
 //	===================
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //    	csrf - Cross-Site Request Forgery
-        http.csrf().disable().authorizeHttpRequests(req -> req
-                .requestMatchers("/home").permitAll()
-                .requestMatchers("/api").permitAll()
-                .anyRequest().authenticated()
-                );
-//            .formLogin(Customizer.withDefaults())
-//            .httpBasic(Customizer.withDefaults());
+		http.csrf().disable().authorizeHttpRequests(req -> req
+				.requestMatchers("/home").permitAll()
+				.requestMatchers("/api").permitAll()
+				.anyRequest().authenticated());
 
-        return http.build();
-    }
-	
+				http.formLogin(Customizer.withDefaults());
+		http.httpBasic(Customizer.withDefaults());
+		return http.build();
+	}
+
 //	@Bean
 //	public UserDetailsService userDetailsService() {
 //		UserDetails admin = User.builder()
@@ -71,12 +76,7 @@ public class Config {
 //		
 //		return new InMemoryUserDetailsManager(admin, user);
 //	}
-	
-	
-	
-	
-	
-	
+
 //  @Bean
 //  public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 //      http.csrf().disable()
@@ -88,5 +88,5 @@ public class Config {
 //
 //      return http.build();
 //  }
-	
+
 }

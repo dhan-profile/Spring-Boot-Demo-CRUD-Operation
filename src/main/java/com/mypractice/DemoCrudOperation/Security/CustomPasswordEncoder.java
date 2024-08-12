@@ -8,5 +8,6 @@ public class CustomPasswordEncoder {
 		   BCryptPasswordEncoder s=new BCryptPasswordEncoder();
 		                System.out.println(s.encode("selvin"));
 		                 System.out.println(s.encode("admin"));
+		                 System.out.println(s.encode("dhanush"));
 	  }
 }
