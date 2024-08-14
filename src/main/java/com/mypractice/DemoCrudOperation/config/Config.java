@@ -53,7 +53,8 @@ public class Config {
 		http.csrf().disable().authorizeHttpRequests(req -> req
 				.requestMatchers("/home").permitAll()
 				.requestMatchers("/api").permitAll()
-				.anyRequest().authenticated());
+				.anyRequest().permitAll());
+//				.anyRequest().authenticated());
 
 				http.formLogin(Customizer.withDefaults());
 		http.httpBasic(Customizer.withDefaults());

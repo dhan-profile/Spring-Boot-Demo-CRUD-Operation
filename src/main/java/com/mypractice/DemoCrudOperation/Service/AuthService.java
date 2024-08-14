@@ -54,9 +54,9 @@ public class AuthService {
 		user.setPassword(passwordEncoder.encode(registerDto.getPassword()));
 		
 		Set<Role> roles = new HashSet<Role>();
-		Role role = roleRepository.findByRoleName("admin").get();
-		Role role1 = roleRepository.findByRoleName("user").get();
-		roles.add(role);
+//		Role role = roleRepository.findByRoleName("admin").get();
+		Role role1 = roleRepository.findByRoleName("USER").get();
+//		roles.add(role);
 		roles.add(role1);
 		user.setRole(roles);
 		userRepository.save(user);
