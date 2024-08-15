@@ -19,10 +19,15 @@ public class AadharDetails {
 	private int id;
 	private long aadharNumber;
 	
-	@OneToOne(cascade=CascadeType.ALL,mappedBy="aadharDetails",fetch=FetchType.EAGER)
+//	=================================================
+//	🔺 mappedBy is used to define Bi-direcional mapping
+//	=================================================
+//	@OneToOne(cascade=CascadeType.ALL,mappedBy="aadharDetails",fetch=FetchType.EAGER)
+	
+//	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.LAZY)
 //	@JoinColumn(name="studentId", referencedColumnName="id")
-	 @JsonManagedReference
-	private Student student;
+//	 @JsonManagedReference
+//	private Student student;
 	
 	public AadharDetails() {
 	}
@@ -45,11 +50,11 @@ public class AadharDetails {
 		this.aadharNumber = aadharNumber;
 	}
 
-	public Student getStudent() {
-		return student;
-	}
-
-	public void setStudent(Student student) {
-		this.student = student;
-	}
+//	public Student getStudent() {
+//		return student;
+//	}
+//
+//	public void setStudent(Student student) {
+//		this.student = student;
+//	}
 }

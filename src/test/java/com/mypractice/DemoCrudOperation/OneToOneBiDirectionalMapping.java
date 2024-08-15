@@ -25,7 +25,7 @@ public class OneToOneBiDirectionalMapping {
 		student.setLocation("Tiruchi");
 		
 		student.setAadharDetails(aadharDetails);
-		aadharDetails.setStudent(student);
+//		aadharDetails.setStudent(student);
 		
 		aadharDetailsRepository.save(aadharDetails);
 	}

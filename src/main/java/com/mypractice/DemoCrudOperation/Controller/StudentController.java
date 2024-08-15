@@ -29,14 +29,8 @@ public class StudentController {
 	
     @PostMapping("/saveStudent")
     public Student saveStudent(@RequestBody Student student) {
-        AadharDetails aadharDetails = student.getAadharDetails();
-        aadharDetails.setId(student.getId());
-        AadharDetails aadharStudentId = aadharRepository.findById(aadharDetails.getId()).get();
-       	aadharStudentId = aadharRepository.save(aadharDetails);
-       	aadharStudentId.setAadharNumber(aadharDetails.getAadharNumber());
-        aadharStudentId.setStudent(student);
-        student.setAadharDetails(aadharStudentId);
-        return studentService.saveStudentDetails(student);
+    	Student stud = studentService.saveStudentDetails(student);
+        return stud;
     }
 	
     @GetMapping("/getAllStudent")

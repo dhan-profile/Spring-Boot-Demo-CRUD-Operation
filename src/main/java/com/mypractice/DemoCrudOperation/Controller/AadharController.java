@@ -20,10 +20,10 @@ import com.mypractice.DemoCrudOperation.Service.AadharService;
 public class AadharController {
 	@Autowired
 	private AadharService aadharService;
-
 	
 	@PostMapping("/saveAadhar")
 	public AadharDetails saveAadhar(@RequestBody AadharDetails aadharDetails) {
+        // Ensure bidirectional consistency before saving
 	    return aadharService.saveAadharDetails(aadharDetails);
 	}
 	

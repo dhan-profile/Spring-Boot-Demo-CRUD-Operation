@@ -15,6 +15,10 @@ public class StudentService {
 	private StudentRepository studentRepository;
 	
 	public Student saveStudentDetails(Student student) {
+		
+//	  +======================================================================================+
+//    | 🔺 This 👇 will save both Student-🤵 and AadharDetails-🎫 due to 👉 CascadeType.ALL 🔺 |
+//	  +======================================================================================+
 		return studentRepository.save(student);
 	}
 	

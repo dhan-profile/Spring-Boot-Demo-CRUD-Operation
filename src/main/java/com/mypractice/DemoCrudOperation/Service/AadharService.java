@@ -19,6 +19,12 @@ public class AadharService {
 	private StudentRepository studentRepository;
 	
 	public AadharDetails saveAadharDetails(AadharDetails aadhar) {
+//		Student student = aadhar.getStudent();
+// 		Save the student first if it doesn't exist
+//        if (student.getName() != null && student.getLocation() != null) {
+//            studentRepository.save(student);
+//        }
+
 		return aadharDetailsRepository.save(aadhar);
 	}
 	

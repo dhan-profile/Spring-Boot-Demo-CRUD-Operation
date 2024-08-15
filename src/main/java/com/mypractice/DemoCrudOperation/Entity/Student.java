@@ -23,8 +23,11 @@ public class Student {
 //	@OneToOne(cascade=CascadeType.ALL,mappedBy="student",fetch=FetchType.EAGER)
 	
 	@OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+//	=============================================================
+//	🔺 @JoinColumn is used to Customize and refer Foreign Key column
+//	=============================================================
 	@JoinColumn(name="aadhar_id", referencedColumnName="id")
-	 @JsonManagedReference
+//	 @JsonManagedReference
 	private AadharDetails aadharDetails;
 	
 	public Student() {
