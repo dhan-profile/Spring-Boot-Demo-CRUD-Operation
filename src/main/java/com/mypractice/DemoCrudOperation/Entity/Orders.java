@@ -21,15 +21,14 @@ public class Orders
      @GeneratedValue(strategy=GenerationType.IDENTITY)
      private int orderno;
      
-     @Column(name = "OrderTrackingNumber", columnDefinition = "VARCHAR(255)")
-     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
+     @Column(name = "OrderTrackingNumber", unique = true, nullable = false)
      private String OrderTrackingNumber;
      private String status;
      private String message;
      
      @OneToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
      @JoinColumn(name="payments_id", referencedColumnName="no")
-     private Payments payments= new Payments();
+     private Payments payments;
 	
      
      public Payments getPayments() {
@@ -45,7 +44,6 @@ public class Orders
 	}
 
 	public Orders(int orderno, String orderTrackingNumber, String status, String message) {
-		super();
 		this.orderno = orderno;
 		OrderTrackingNumber = orderTrackingNumber;
 		this.status = status;

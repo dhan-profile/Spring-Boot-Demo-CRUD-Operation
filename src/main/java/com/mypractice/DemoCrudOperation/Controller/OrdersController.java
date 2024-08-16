@@ -18,7 +18,8 @@ public class OrdersController {
 	private OrderPaymentsService orderPaymentsService;
 
 	@PostMapping("/saveOrder")
-	public OrderPaymentsDto saveOrder(@RequestBody OrderPaymentsDto orderPaymentsDto) {
-		return orderPaymentsService.payment(orderPaymentsDto);
+	public ResponseEntity<OrderPaymentsDto> saveOrder(@RequestBody OrderPaymentsDto orderPaymentsDto) {
+		OrderPaymentsDto orderPayments = orderPaymentsService.payment(orderPaymentsDto);
+		return ResponseEntity.ok(orderPayments);
 	}
 }

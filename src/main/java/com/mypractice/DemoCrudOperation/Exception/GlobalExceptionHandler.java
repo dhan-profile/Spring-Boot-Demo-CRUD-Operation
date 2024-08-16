@@ -37,4 +37,9 @@ public class GlobalExceptionHandler
 		ErrorDetails u = new ErrorDetails(new Date(), notfound.getMessage(), webRequest.getDescription(true));
 		return new ResponseEntity<>(u, HttpStatus.NOT_FOUND);
 	 }
+	 
+	 public ResponseEntity<ErrorDetails> InvalidPaymentException(InvalidPaymentException notfound,WebRequest webRequest){
+		 ErrorDetails er = new ErrorDetails(new Date(), notfound.getMessage(), webRequest.getDescription(true));
+		 return new ResponseEntity<>(er, HttpStatus.NOT_FOUND);
+	 }
 }

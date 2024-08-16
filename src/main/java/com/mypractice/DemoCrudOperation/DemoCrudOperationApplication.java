@@ -14,7 +14,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 @OpenAPIDefinition(info=@Info(title="Demo CRUD Operation", 
 						description="Employee Management system",
 						version="Spring Boot version 3.8",
-						contact=@Contact(name="Selvin", email="selvin@gmail.com")))
+						contact=@Contact(name="admin", email="admin@gmail.com")))
 
 public class DemoCrudOperationApplication {
 
