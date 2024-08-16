@@ -17,7 +17,7 @@ import io.swagger.v3.oas.annotations.info.Info;
 						contact=@Contact(name="admin", email="admin@gmail.com")))
 
 public class DemoCrudOperationApplication {
-
+ 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoCrudOperationApplication.class, args);
 		index();

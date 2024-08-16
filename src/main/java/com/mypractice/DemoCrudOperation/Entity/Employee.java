@@ -27,7 +27,7 @@ public class Employee {
 	
 	
 	public Employee() {
-//		super();
+		
 	}
 	
 	public Employee(int id, String name, int empid, String location) {

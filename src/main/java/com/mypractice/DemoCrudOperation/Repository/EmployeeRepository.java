@@ -23,6 +23,8 @@ public interface EmployeeRepository extends JpaRepository<Employee, Integer>{
     public List<Employee> findByIdGreaterThan(int id);
 //    findBy = Predicate, Id= Subject, GreaterThan = Predicate
     
+//    public List<Employee> saveEmployees(List<Employee> employee);
+
     
     
 //	JPQL - Java Persistance Query Language

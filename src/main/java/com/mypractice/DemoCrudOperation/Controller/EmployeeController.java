@@ -18,13 +18,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.mypractice.DemoCrudOperation.Dto.AppConstants;
+import com.mypractice.DemoCrudOperation.Dto.PostResponse;
 import com.mypractice.DemoCrudOperation.Entity.Employee;
 import com.mypractice.DemoCrudOperation.Service.EmployeeService;
 
 @RestController
 @RequestMapping("/api")
 public class EmployeeController {
-	
+	 
 	@Autowired
     private EmployeeService employeeService;
 
@@ -32,8 +34,8 @@ public class EmployeeController {
 
 	@PostMapping("/saveEmployee")
 	@ResponseBody
-	public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
-	    Employee savedEmployee = employeeService.saveEmployee(employee);
+	public ResponseEntity<List<Employee>> saveEmployee(@RequestBody List<Employee> employee) {
+	    List<Employee> savedEmployee = employeeService.saveEmployee(employee);
 	    return new ResponseEntity<>(savedEmployee,HttpStatus.OK);
 //	    return savedEmployee;
 	}
@@ -47,11 +49,17 @@ public class EmployeeController {
 	}
 	
 //	@RequestMapping(value="/getAll", method=RequestMethod.GET)
-	@GetMapping("/getAll")
+	@GetMapping("/getAllEmployee")
 	@ResponseBody
-	public ResponseEntity<List<Employee>> getAll(){
-		List<Employee> employee=employeeService.getAllEmployees();
-		return new ResponseEntity<>(employee,HttpStatus.OK);
+	public PostResponse getAll(
+			@RequestParam(value="pageNumber",defaultValue=AppConstants.PAGE_NUMBER ,required=false) int pageNumber,
+		       @RequestParam(value="pageSize",defaultValue=AppConstants.PAGE_SIZE,required=false) int pageSize,
+		       @RequestParam(value="sortBy",defaultValue=AppConstants.SORT_BY,required=false) String sortBy,
+		       @RequestParam(value="sortDir",defaultValue=AppConstants.SORT_DIR,required=false) String sortDir){
+//		List<Employee> employee=employeeService.getAllEmployees();
+		PostResponse employees=employeeService.getAllEmployees(pageNumber, pageSize,sortBy,sortDir);
+		return employees;
+//		return new ResponseEntity<>(employee,HttpStatus.OK);
 //		return employee;
 	}
 	
