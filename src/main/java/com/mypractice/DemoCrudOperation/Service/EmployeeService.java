@@ -21,7 +21,7 @@ public class EmployeeService {
 	@Autowired
 	private EmployeeRepository employeeRepository;
 
-//	save() - To insert and update in DB
+//	save() - To insert and update in DB | List<> for saving multiple employee 
 	public List<Employee> saveEmployee(List<Employee> employees) {
 	    List<Employee> savedEmployees = new ArrayList<>();
 	    for (Employee employee : employees) {
@@ -33,7 +33,6 @@ public class EmployeeService {
 	}
 	
 	
-
 	public Employee getByIdEmployee(int id) {
 		Employee employee = employeeRepository.findById(id)
 				.orElseThrow(()->new EmployeeNotFoundException("EmployeeNotFound"));
