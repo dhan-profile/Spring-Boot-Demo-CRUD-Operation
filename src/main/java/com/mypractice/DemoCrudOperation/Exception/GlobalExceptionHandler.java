@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
 @ControllerAdvice
+//@ControllerAdvice is an annotation that allows you to create a centralized class for 
+//handling exceptions thrown by controllers. 
+//It provides a way to implement global exception handling logic, 
+//improving the maintainability and robustness of your application.
+
 public class GlobalExceptionHandler
 {
 //	 @ExceptionHandler(EmployeeNotFoundException.class)
